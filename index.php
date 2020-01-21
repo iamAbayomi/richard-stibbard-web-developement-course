@@ -1,20 +1,9 @@
-<!DOCTYPE html>
+ <?php
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="css/reset.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="sprites/sprites.css" rel="stylesheet">
-        
-        <!--[if lt IE 9]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-            <script src="scripts/html5shiv-printshiv.js"></script>
-        <![endif]-->
-                             
-        <title>Instant Update Database Project by WebinAction.co.uk</title>        
-    </head>
-    
+        require_once 'php-includes/head.inc.php';
+
+ ?>
+
     <body>
         <header>
             <h1>Instant Update Database Project</h1>
