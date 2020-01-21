@@ -1,44 +1,12 @@
-<!DOCTYPE html>
+<?php
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="css/reset.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        
-        <!--[if lt IE 9]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-            <script src="scripts/html5shiv-printshiv.js"></script>
-        <![endif]-->
-                             
-        <title>Instant Update Database Project by WebinAction.co.uk</title>        
-    </head>
-    
-    <body>
-        <header>
-            <h1>Instant Update Database Project</h1>
-        </header>
-        
-        <nav class="navigation">
-            <div class="select_users">
-                <h2><a href="#">Logged-in user's name</a></h2>
-            </div>
+    require_once 'php-includes/head.inc.php';
+    require_once 'php-includes/header.inc.php';
+    require_once 'php-includes/navigation.inc.php';
 
-            <div class="profile logged_out"></div>
-            <div class="admin_button"></div>
-            
-           <ul class="users_menu">
-                <li><a href="#">List of other users</a></li>
-                <li><a href="#">List of other users</a></li>
-                <li><a href="#">List of other users</a></li>                
-            </ul>
-            <ul class="admin_menu">
-                <li><a href="#">Manage users</a></li>
-                <li><a href="#">Manage movies</a></li>
-            </ul>
-             
-        </nav>
-        
+?>
+
+      
         <nav class="favs_list">
             <h2>Favourites</h2>
             <ul class="favs">
