@@ -6,10 +6,7 @@
     require_once 'php-includes/favourites.inc.php';
 
 ?>
-
-    
-		
-        
+      
         <section class="movie_single">
             <a href="#"><img class="movie_player" alt="Movie title" src="images-movies/movie.png"></a>
             <h3>Movie title</h3>
@@ -21,6 +18,6 @@
             <p class="description">Description Description Description Description Description Description Description Description Description Description Description Description Description </p>
         </section>
         
-        <?php
+<?php
             require_once 'php-includes/footer.inc.php';
-        ?>
+?>

@@ -34,10 +34,7 @@ require_once 'php-includes/navigation.inc.php';
                 </table>
             </div>
         </section>
-        
-        <footer>
-            <p>Instant update database project by <a href="mailto:learn@webinaction.co.uk">learn@webinaction.co.uk</a></p>
-        </footer>
-        
-    </body>
-</html>
+       
+        <?php
+            require_once 'php-includes/footer.inc.php';
+        ?>
