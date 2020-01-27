@@ -1,4 +1,4 @@
-   <section class="movie_single">
+        <section class="movie_single">
             <a href="#"><img class="movie_player" alt="Movie title" src="images-movies/movie.png"></a>
             <h3>Movie title</h3>
             <div class="actions">

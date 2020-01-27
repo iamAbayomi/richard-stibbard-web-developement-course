@@ -1,4 +1,3 @@
-
         <nav class="favs_list">
             <h2>Favourites</h2>
             <ul class="favs">
@@ -8,4 +7,3 @@
             </ul>
 			<div class='trash'></div>            
         </nav>
-        

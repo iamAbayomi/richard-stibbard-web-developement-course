@@ -1,7 +1,7 @@
- <section class="movie_list">
-        <h2>Hi, (username will appear here)</h2>
-       <p class="welcome">Here are some movies you might like.
-        Click on the heart icon to add them to your favourites list.</p>
+        <section class="movie_list">
+            <h2>Hi, (username will appear here)</h2>
+            <p class="welcome">Here are some movies you might like.
+            Click on the heart icon to add them to your favourites list.</p>
             <ul>
                 <li>
                     <figure><a href="#"><img class="thumbnail" alt="Thumbnail"
@@ -35,4 +35,4 @@
                 </li>
             </ul>
         </section>
-    
+        

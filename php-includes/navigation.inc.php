@@ -1,4 +1,4 @@
-   <nav class="navigation">
+        <nav class="navigation">
             <div class="select_users">
                 <h2><a href="#">Logged-in user's name</a></h2>
             </div>
@@ -13,8 +13,7 @@
             </ul>
             
             <ul class="admin_menu">
-                <li><a href="#">Manage users</a></li>
-                <li><a href="#">Manage movies</a></li>
+                <li><a href="admin.php?page=users">Manage users</a></li>
+                <li><a href="admin.php?page=movies">Manage movies</a></li>
             </ul>
         </nav>
-        
