@@ -1,7 +1,9 @@
 <?php
    
-    $movieID = $_GET['movie_id'];
+    if(isset($_GET['movie_id'])){
+        $movieID = $_GET['movie_id'];
+        echo $movieID;
+      }
 
-    echo $movieID;
-
+      
 ?>
