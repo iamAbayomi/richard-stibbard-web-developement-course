@@ -43,11 +43,12 @@ ul.users_menu, ul.admin_menu {
 
 ul.users_menu {
    width: 200px;
-   display: none;   
+   
 }
 
 ul.admin_menu {
    width: 150px;
+   display: none;  
 }
 
 ul.users_menu a, ul.admin_menu a {
