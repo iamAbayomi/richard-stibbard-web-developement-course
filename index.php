@@ -24,6 +24,6 @@ if (isset($movieID)) {
 }
 
 
-require_once '/footer.inc.php';
+require_once 'footer.inc.php';
 
 ?>

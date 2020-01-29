@@ -1,22 +1,59 @@
 <?php
 
-        function showUsers(){
-            global $db;
+        function showUsers($data){
+            global $db, $userID;
 
-            $stmt =  $db->prepare("SELECT * FROM `movie_goers` ORDER BY `firstname`");
+            switch($data){
+                 
+                case "all":
+                    $stmt = $db -> prepare("SELECT * from  `movie_goers` ORDER BY  `firstname`");
+                    $tag = "li";
+                break;
+               
+                case "current";
+                    $stmt = $db->prepare("SELECT * FROM `movie_goers` WHERE `user_id` = ?");
+                    $stmt -> bind_param('i', $userID);
+                    $tag = "h2";
+                break;
+
+                case "others":
+                    $stmt = $db ->prepare("SELECT * FROM `movie_goers` WHERE  `user_id` !=? 
+                         ORDER BY `firstname`"); 
+                    $stmt->bind_param('i', $userID);
+                    $tag = "li";
+                break;        
+                
+                
+            }
+
+
             $stmt -> bind_result($id, $firstname, $lastname);
             $stmt -> execute();
 
+            if($tag=="li"){
+                $output = "<ul class='users_menu'>";
+            } else {
+                $output = " ";
+            }   
 
-            $output = "<ul class='users_menu'>";
+           
             while( $stmt->fetch() ){
                 $firstname = htmlentities($firstname, ENT_QUOTES, "UTF-8");
                 $lastname = htmlentities($lastname, ENT_QUOTES, "UTF-8");
-                $output .= "<li><a href ='index.php?user_id=$id'> $firstname $lastname</a></li>";
+                $output .= "<$tag>";
+                $output .= "<a href ='index.php?user_id=$id'> $firstname $lastname</a>";
+                $output .= "<$tag>";
 
             }
-
-            $output .= "</ul>";
+            
+            
+            if($tag=="li"){
+                $output .= "</ul>";
+           
+            }
+            
+ 
+            
             $stmt->close();
             return($output);
 
