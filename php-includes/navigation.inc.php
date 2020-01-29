@@ -1,15 +1,28 @@
 <?php
     $testUsers = testUsers();
-    echo $testUsers;
-    exit;
-
-    $usersList = showUsers();
+    
+    switch($testUsers){
+        case "no_id":
+            $usersList = showUsers('all');
+            $heading = "Choose a movie-goer";
+            break;
+        
+        case "invalid_id":
+            $usersList = showUsers('all');
+            $heading = "Choose a movie-goer";
+            break;
+        
+        case "id_set":
+            $usersList = showUsers('others');
+            $heading = showUsers('current');
+            break;
+    }
     
 ?>
 
 <nav class="navigation">
     <div class="select_users">
-        <h2><a href="#">Logged-in user's name</a></h2>
+        <?php echo $heading ?>
     </div>
 
     <div class="profile logged_out"></div>
