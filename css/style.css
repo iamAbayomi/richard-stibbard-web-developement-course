@@ -43,6 +43,7 @@ ul.users_menu, ul.admin_menu {
 
 ul.users_menu {
    width: 200px;
+   /* display: none; */
    
 }
 
