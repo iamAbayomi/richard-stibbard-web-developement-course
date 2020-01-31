@@ -51,10 +51,10 @@ function showMovies($data) {
                 break;
             
             case "non_favs":
-                if (file_exists("images-movies/$id-thumb.png")) {
-                    $image = "images-movies/$id-thumb.png";
+                if (file_exists("images-movies/$id-tn.png")) {
+                    $image = "images-movies/$id-tn.png";
                 } else {
-                    $image = "images-movies/generic-thumb.png";
+                    $image = "images-movies/generic-tn.png";
                 }
                 $output .= "<li>";
                 $output .= "<figure>";
