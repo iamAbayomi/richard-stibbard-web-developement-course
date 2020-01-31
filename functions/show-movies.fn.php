@@ -26,8 +26,12 @@ function showMovies($data) {
             ORDER BY `title`");
             $stmt->bind_param('i', $userID);
             break;            
-            
-        
+       
+        case "single":
+            $stmt = $db->prepare("SELECT * FROM movies
+                WHERE `movie_id` = ? ");
+            $stmt->bind_param('i', $movieID);
+          break;            
     }
     
     $stmt->bind_result($id, $title, $description);
@@ -66,9 +70,18 @@ function showMovies($data) {
                 $output .= "</figure>";
                 $output .= "</li>";
                 break;
+
+            case 'single':
+                $output .= " <a href='#'><img class='movie_player' alt='Movie title' src='images-movies/$id.png'></a>";
+                $output .= " <h3>$title</h3><div class='actions'><div class='add_remove'>";
+                $output .=  "<p>Add to/remove from favourites</p></div></div>";
+                $output.= "<p class='description'>$description</p>";
+            break;
+
         }
     }
-    
+
+   
     $stmt->close();
     return($output);
 }
