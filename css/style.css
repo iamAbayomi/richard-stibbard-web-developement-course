@@ -67,6 +67,22 @@ ul.users_menu li a:hover, .admin_menu li a:hover {
    color: white;
 }
 
+
+ul.users_menu li.logout {
+	border-top: 1px solid grey;
+	text-transform: uppercase;
+}
+
+ul.users_menu li.logout a {
+	background-color: white;
+	color: black;
+}
+
+ul.users_menu li.logout a:hover {
+	background-color: black;
+	color: white;
+}
+
 .admin_users, .admin_movies {
    margin-top: 40px;
    margin-left: 50px;

@@ -4,17 +4,20 @@
     switch($testUsers){
         case "no_id":
             $usersList = showUsers('all');
-            $heading = "Choose a movie-goer";
+            $heading = "<h2><a>Choose a movie-goer</a></h2>";
+            $loggedState = "logged_out"; 
             break;
         
         case "invalid_id":
             $usersList = showUsers('all');
-            $heading = "Choose a movie-goer";
+            $heading = "<h2><a>Choose a movie-goer</a></h2>";
+            $loggedState = "logged_out";
             break;
         
         case "id_set":
             $usersList = showUsers('others');
             $heading = showUsers('current');
+            $loggedState = "logged_in"; 
             break;
     }
     
@@ -25,12 +28,10 @@
         <?php echo $heading ?>
     </div>
 
-    <div class="profile logged_out"></div>
+    <div class="profile <?php echo $loggedState; ?>"> </div>
     <div class="admin_button"></div>
     
-<?php
-    echo  $usersList;
-?>
+<?php echo  $usersList;?>
 
 
     <ul class="admin_menu">
