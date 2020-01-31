@@ -1,6 +1,6 @@
 <?php
 
-// Called in favourites.inc.php
+// Called in favourites.inc.php and movie-list.inc.php
 
 function showMovies($data) {
     global $db, $userID, $movieID;
@@ -17,8 +17,17 @@ function showMovies($data) {
             $stmt->bind_param('i', $userID);
             break;
         
-         
+        case "non_favs":
+            $stmt = $db->prepare("SELECT * FROM movies
+                WHERE `movie_id` NOT IN (
+                    SELECT `movie_id` FROM `favourites`
+                        WHERE `favourites`.`user_id` = ?
+                )
+            ORDER BY `title`");
+            $stmt->bind_param('i', $userID);
+            break;            
             
+        
     }
     
     $stmt->bind_result($id, $title, $description);
@@ -29,60 +38,39 @@ function showMovies($data) {
     while ($stmt->fetch()) {
         $title = htmlentities($title, ENT_QUOTES, "UTF-8");
         $description = htmlentities($description, ENT_QUOTES, "UTF-8");
-        $output .= "<li>";
-        $output .= "<a href='index.php?user_id=$userID&amp;movie_id=$movieID'>$title</a>";
-        $output .= "</li>";
+        
+        switch($data) {
+            case "favs":
+                $output .= "<li>";
+                $output .= "<a href='index.php?user_id=$userID&amp;movie_id=$id'>$title</a>";
+                $output .= "</li>";
+                break;
+            
+            case "non_favs":
+                if (file_exists("images-movies/$id-thumb.png")) {
+                    $image = "images-movies/$id-thumb.png";
+                } else {
+                    $image = "images-movies/generic-thumb.png";
+                }
+                $output .= "<li>";
+                $output .= "<figure>";
+                $output .= "<a href='index.php?user_id=$userID&amp;movie_id=$id'>";
+                $output .= "<img class='thumb' alt='$title' src='$image'></a>";
+                $output .= "<figcaption>";
+                $output .= "<h3>";
+                $output .= "<a href='index.php?user_id=$userID&amp;movie_id=$id'>$title</a>";
+                $output .= "</h3>";
+                $output .= "<div class='description'>$description</div>";
+                $output .= "<div class='add_remove favourite'></div>";
+                $output .= "</figcaption>";
+                $output .= "</figure>";
+                $output .= "</li>";
+                break;
+        }
     }
-    
     
     $stmt->close();
     return($output);
 }
 
-    //Show non favs
-
-    function showNonFavs($data){
-        global $db, $userID, $movieID;
-    
-        switch($data) {
-            
-            case "non_favs":
-                $stmt = $db->prepare("SELECT * FROM movies
-                    WHERE `movie_id` NOT IN (
-                        SELECT `movie_id` FROM `favourites`
-                            WHERE `favourites`.`user_id` = ?
-                    )
-                ORDER BY `title`");
-                $stmt->bind_param('i', $userID);
-            break;
-            
-        }
-
-
-        $stmt->bind_result($id, $title, $description);
-        $stmt->execute();
-
-        $output = "";
-
-        while ($stmt->fetch()) {
-            $title = htmlentities($title, ENT_QUOTES, "UTF-8");
-            $description = htmlentities($description, ENT_QUOTES, "UTF-8");
-            $output .=  "<li>";
-            $output .=  "<figure><a href='index.php?user_id=$userID&amp;movie_id=$movieID'>";
-            $output .=  "<img class='thumbnail' alt='Thumbnail'";
-            $output .= "src='images-movies/$id.png'></a>";
-            $output .=  "<figcaption><h3><a href='#'>$title</a></h3>";
-            $output .=  "<div class='description'>$description</div><div class='add_remove add favourite'></div>";
-            $output .=  "</figcaption>";
-            $output .= "</figure>";
-            $output .=  "</li>";
-        
-        }
-
-
-        $stmt->close();
-        return($output);
-
-    }
-
-?>
+?> 
