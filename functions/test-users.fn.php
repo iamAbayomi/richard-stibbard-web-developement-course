@@ -1,5 +1,6 @@
 <?php
     //called in navigation.inc.php
+    //Adding test-users 
 
     function testUsers(){
           global $db, $userID;
