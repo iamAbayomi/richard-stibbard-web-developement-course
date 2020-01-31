@@ -1,6 +1,6 @@
 <?php
 
-// Called in navigation.inc.php
+// Called in navigation.inc.php and movie-list.inc.php
 
 function showUsers($data) {
     global $db, $userID;
@@ -23,27 +23,19 @@ function showUsers($data) {
                                  WHERE `user_id` != ? ORDER BY `firstname`");
             $stmt->bind_param('i', $userID);
             $tag = "li";
-            break; 
-         
+            break;
+        
         case "get_name":
             $stmt = $db->prepare("SELECT * FROM `movie_goers` WHERE `user_id` = ?");
             $stmt->bind_param('i', $userID);
             $tag = "h2";
-            break;            
-       
+            break;
+        
     }
     
     $stmt->bind_result($id, $firstname, $lastname);
     $stmt->execute();
-    $stmt-> store_result();
-    $numrows = $stmt ->num_rows;
-
-        if($numrows<1){
-            return("No Movie Goers");
-        } else{
-            return("id_set");
-        }
-
+    
     if ($tag=="li") {
         $output = "<ul class='users_menu'>";
     } else {
@@ -54,7 +46,7 @@ function showUsers($data) {
     while ($stmt->fetch()) {
         $firstname = htmlentities($firstname, ENT_QUOTES, "UTF-8");
         $lastname = htmlentities($lastname, ENT_QUOTES, "UTF-8");
-         
+        
         if ($data=="get_name") {
             $output .= "<$tag>";
             $output .= "Hi, $firstname $lastname";

@@ -1,6 +1,12 @@
         <section class="admin">
             <div class="admin_users">
-                <h2>Manage users</h2>
+
+               <?php
+                if($testUsers!="no_data"){
+                    echo "<h2>Manage users</h2>";
+                }
+               ?>
+                
                 <table class="admin_table">
                     <tr>
                         <th class="data_col">Firstname</th>
