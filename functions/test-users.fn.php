@@ -16,7 +16,7 @@
           $stmt->close();
 
           if($numrows<1){
-              return("invalid");
+              return("invalid_id");
           } else{
               return("id_set");
           }
