@@ -15,12 +15,6 @@ require_once 'header.inc.php';
 require_once 'navigation.inc.php';
 require_once 'favourites.inc.php';
 
-if (isset($movieID)) {
-	require_once 'movie-single.inc.php';
-} else {
-	require_once 'movie-list.inc.php';
-}
-
 require_once 'footer.inc.php';
 
 ?>
