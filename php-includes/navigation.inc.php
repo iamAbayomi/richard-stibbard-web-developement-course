@@ -1,6 +1,9 @@
 <?php
     $testUsers = testUsers();
+    $testMovies = testMovies();
+
     
+
     switch($testUsers){
         case "no_id":
             $usersList = showUsers('all');
@@ -20,6 +23,7 @@
             $loggedState = "logged_in"; 
             break;
     }
+
     
 ?>
 
@@ -41,6 +45,15 @@
 </nav>
 
 <?php
+
+if($usersList == "No Movie Goers"){
+    echo "<div class= 'message alert'>";
+    echo "<h2> No Movies Add movies in the admin table</h2>";
+    echo "</div>";
+    include "footer.inc.php" ;
+    exit;
+}
+
     if($testUsers =="no_id"){
         echo "<div class='message'>";
         echo "<h2>Choose one of the movie-goers from the menu on the right";
@@ -58,4 +71,5 @@
         exit;
     }
 
+    
 ?>

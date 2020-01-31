@@ -35,7 +35,15 @@ function showUsers($data) {
     
     $stmt->bind_result($id, $firstname, $lastname);
     $stmt->execute();
-    
+    $stmt-> store_result();
+    $numrows = $stmt ->num_rows;
+
+        if($numrows<1){
+            return("No Movie Goers");
+        } else{
+            return("id_set");
+        }
+
     if ($tag=="li") {
         $output = "<ul class='users_menu'>";
     } else {
