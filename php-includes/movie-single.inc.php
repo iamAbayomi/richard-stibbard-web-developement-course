@@ -1,4 +1,5 @@
-       <?php  $single= showMovies('single')?>
+<?php $singleMovie = showMovies('single'); ?>
+
         <section class="movie_single">
-            <?php echo $single ?>
+            <?php echo $singleMovie; ?>
         </section>

@@ -25,13 +25,13 @@ function showMovies($data) {
                 )
             ORDER BY `title`");
             $stmt->bind_param('i', $userID);
-            break;            
-       
+            break;
+        
         case "single":
-            $stmt = $db->prepare("SELECT * FROM movies
-                WHERE `movie_id` = ? ");
+            $stmt = $db->prepare("SELECT * FROM movies WHERE movie_id = ?");
             $stmt->bind_param('i', $movieID);
-          break;            
+            break;            
+        
     }
     
     $stmt->bind_result($id, $title, $description);
@@ -59,7 +59,7 @@ function showMovies($data) {
                 $output .= "<li>";
                 $output .= "<figure>";
                 $output .= "<a href='index.php?user_id=$userID&amp;movie_id=$id'>";
-                $output .= "<img class='thumb' alt='$title' src='$image'></a>";
+                $output .= "<img class='thumbnail' alt='$title' src='$image'></a>";
                 $output .= "<figcaption>";
                 $output .= "<h3>";
                 $output .= "<a href='index.php?user_id=$userID&amp;movie_id=$id'>$title</a>";
@@ -70,18 +70,24 @@ function showMovies($data) {
                 $output .= "</figure>";
                 $output .= "</li>";
                 break;
-
-            case 'single':
-                $output .= " <a href='#'><img class='movie_player' alt='Movie title' src='images-movies/$id.png'></a>";
-                $output .= " <h3>$title</h3><div class='actions'><div class='add_remove'>";
-                $output .=  "<p>Add to/remove from favourites</p></div></div>";
-                $output.= "<p class='description'>$description</p>";
-            break;
-
+            
+            case "single":
+                if (file_exists("images-movies/$id.png")) {
+                    $image = "images-movies/$id.png";
+                } else {
+                    $image = "images-movies/generic.png";
+                }                
+                $output .= "<img class='movie_player' alt='$title' src='$image'>";
+                $output .= "<h3>$title</h3>";
+                $output .= "<div class='actions'>";
+                $output .= "<div class='add_remove'>";
+                $output .= "<p>Add to/remove from favourites</p>";
+                $output .= "</div>";
+                $output .= "</div>";
+                $output .= "<p class='description'>$description</p>";
         }
     }
-
-   
+    
     $stmt->close();
     return($output);
 }
