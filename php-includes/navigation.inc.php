@@ -31,7 +31,7 @@
     <div class="profile <?php echo $loggedState; ?>"> </div>
     <div class="admin_button"></div>
     
-<?php echo  $usersList;?>
+<?php echo  $usersList; ?>
 
 
     <ul class="admin_menu">
