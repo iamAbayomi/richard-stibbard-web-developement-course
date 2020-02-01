@@ -1,6 +1,6 @@
 <?php
 
-// Called in navigation.inc.php and movie-list.inc.php
+// Called in navigation.inc.php and main.inc.php
 
 function showUsers($data) {
     global $db, $userID;
@@ -31,13 +31,18 @@ function showUsers($data) {
             $tag = "h2";
             break;
         
+        case "admin":
+            $stmt = $db->prepare("SELECT * FROM `movie_goers`");
+            $tag = "";
+            break;
+        
     }
     
     $stmt->bind_result($id, $firstname, $lastname);
     $stmt->execute();
     
     if ($tag=="li") {
-        $output = "<ul class='users_menu'>";
+        $output = "\t\t\t<ul class='users_menu'>\n";
     } else {
         $output = "";
     }
@@ -47,25 +52,38 @@ function showUsers($data) {
         $firstname = htmlentities($firstname, ENT_QUOTES, "UTF-8");
         $lastname = htmlentities($lastname, ENT_QUOTES, "UTF-8");
         
-        if ($data=="get_name") {
-            $output .= "<$tag>";
-            $output .= "Hi, $firstname $lastname";
-            $output .= "</$tag>";
-        } else {
-            $output .= "<$tag>";
-            $output .= "<a href='index.php?user_id=$id'>$firstname $lastname</a>";
-            $output .= "</$tag>";
+        switch($data) {
+            case "get_name":
+                $output .= "\t\t\t<$tag>";
+                $output .= "Hi, $firstname $lastname";
+                $output .= "</$tag>\n";
+                break;
+            
+            case "all"; case "current"; case "others":
+                $output .= "\t\t\t\t<$tag>";
+                $output .= "<a href='index.php?user_id=$id'>$firstname $lastname</a>";
+                $output .= "</$tag>\n";
+                break;
+         
+            
+            case "admin":
+                $output .= "\t\t\t\t\t<tr class='datarow'>\n";
+                $output .= "<td><input class='data' type='text' name='firstname' value='$firstname'></td>";
+                $output .= "<td><input class='data' type='text' name='lastname' value='$lastname'></td>";
+                $output .= "<td class='deletecell'><div class='delete'></div></td>";
+                $output .= "</tr>";
+                break;
         }
     }
     
     if ($data=="others") {
-        $output .= "<$tag class='logout'>";
+        $output .= "\t\t\t\t<$tag class='logout'>";
         $output .= "<a href='index.php'>Logout</a>";
-        $output .= "</$tag>";
+        $output .= "</$tag>\n";
     }
     
     if ($tag=="li") {
-        $output .= "</ul>";
+        $output .= "\t\t\t</ul>\n\n";
     }
     
     $stmt->close();

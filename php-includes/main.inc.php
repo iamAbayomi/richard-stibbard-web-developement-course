@@ -2,9 +2,7 @@
 $favsList = showMovies('favs');
 $nonfavsList = showMovies('non_favs');
 $testMovies = testMovies();
-
-
-$add_removeFragments = testFav();
+$testFav = testFav();
 
 if ($favsList==""){
 	$favsTitle = "You have no favourites";
@@ -23,7 +21,7 @@ if ($nonfavsList=="") {
 } else {
 	$welcome = "Here are some movies you might like. ";
 	$welcome .= "Click on the heart icon to add them to your favourites list.";
-	$openTag = "<ul>";
+	$openTag = "<ul class='non_favs'>";
 	$closeTag = "</ul>";
 	$welcomeClass = "";
 }
@@ -32,16 +30,16 @@ if ($nonfavsList=="") {
 switch($testMovies) {
     
     case "invalid_id":
-        echo "<div class='message alert'>";
-        echo "<h2>Invalid movie ID: Choose a movie-goer from the menu on the right</h2>";
-        echo "</div>";
+        echo "\t\t<div class='message alert'>\n";
+        echo "\t\t\t<h2>Invalid movie ID: Choose a movie-goer from the menu on the right</h2>\n";
+        echo "\t\t</div>\n\n";
         include 'footer.inc.php';
         exit;
 		
 	case "no_data":
-		echo "<div class='message alert'>";
-		echo "<h2>No movies in database: Add movies below</h2>";
-		echo "</div>";
+		echo "\t\t<div class='message alert'>\n";
+		echo "\t\t\t<h2>No movies in database: Add movies below</h2>\n";
+		echo "\t\t</div>\n\n";
 		include 'admin-movies.inc.php';
 		include 'footer.inc.php';
 		exit;
@@ -56,29 +54,29 @@ switch($testMovies) {
 
 }
 
-echo "<nav class='favs_list'>";
-echo "<h2>$favsTitle</h2>";
-echo "<ul class='favs'>";
+echo "\t\t<nav class='favs_list'>\n";
+echo "\t\t\t<h2>$favsTitle</h2>\n\n";
+echo "\t\t\t<ul class='favs'>\n";
 echo $favsList;
-echo "</ul>";
-echo "<div class='trash $trashClass'></div>";
-echo "</nav>";
+echo "\t\t\t</ul>\n\n";
+echo "\t\t\t<div class='trash $trashClass'></div>\n";
+echo "\t\t</nav>\n\n";
 
 switch($testMovies) {
 	case "no_id":
-		echo "<section class='movie_list'>";
+		echo "\t\t<section class='movie_list'>\n";
 		echo $greeting;
-		echo "<p class='welcome $welcomeClass'>$welcome";
-		echo $openTag;
+		echo "\t\t\t<p class='welcome $welcomeClass'>$welcome</p>\n\n";
+		echo "\t\t\t$openTag\n";
 		echo $nonfavsList;
-		echo $closeTag;
-		echo "</section>";
+		echo "\t\t\t$closeTag\n";
+		echo "\t\t</section>\n\n";
 		break;
 	
 	case "id_set":
-		echo "<section class='movie_single'>";
+		echo "\t\t<section class='movie_single'>\n";
 		echo $singleMovie;
-		echo "</section>";
+		echo "\t\t</section>\n\n";
 		break;
 }
 
