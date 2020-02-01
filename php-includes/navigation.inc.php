@@ -20,12 +20,13 @@ switch($testUsers) {
         $heading = showUsers('current');
         $loggedState = "logged_in";
         break;
+
+	case "no_data":
+		$heading = "<h2><a href='index.php?page=users'>Add movie-goers</a></h2>";
+		$usersList = "";
+		$loggedState = "logged_out";
+		break;
     
-    case "no_data":
-        $heading = "<h2><a href='admin.php?page=users'>Add movie-goers</a><h2>";
-        $usersList = "";
-        $loggedState = "logged_out";
-        break;
 }
 
 ?>
@@ -41,12 +42,24 @@ switch($testUsers) {
     <?php echo $usersList; ?>
         
     <ul class="admin_menu">
-        <li><a href="admin.php?page=users">Manage users</a></li>
-        <li><a href="admin.php?page=movies">Manage movies</a></li>
+        <li><a href="index.php?page=users">Manage users</a></li>
+        <li><a href="index.php?page=movies">Manage movies</a></li>
     </ul>
 </nav>
 
 <?php
+
+if ($page=="users") {
+    include 'admin-users.inc.php';
+    include 'footer.inc.php';
+    exit;
+}
+
+if ($page=="movies") {
+    include 'admin-movies.inc.php';
+    include 'footer.inc.php';
+    exit;
+}
 
 if ($testUsers=="no_id") {
     echo "<div class='message'>";
@@ -69,8 +82,9 @@ if ($testUsers=="no_data") {
     echo "<h2>No movie-goers in database: Add movie-goers below</h2>";
     echo "</div>";
     include 'admin-users.inc.php';
-    include 'footer.inc.php';
+	include 'footer.inc.php';
     exit;
 }
+
 
 ?>

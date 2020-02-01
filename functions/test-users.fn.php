@@ -6,12 +6,12 @@ function testUsers() {
     
     global $db, $userID;
     
-    $sql = "SELECT * FROM movie_goers";
-    $result = $db->query($sql);
-    $numrows = $result->num_rows;
-    
-    if ($numrows<1) {
-        return ("no_data");        
+    $sql = "SELECT * FROM `movie_goers`";
+   	$result = $db->query($sql);
+	$num_rows = $result->num_rows;
+
+	if ($num_rows < 1) {
+		return ("no_data");
     }
     
     if (!isset($userID)) {

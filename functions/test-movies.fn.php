@@ -6,6 +6,14 @@ function testMovies() {
     
     global $db, $movieID;
     
+    $sql = "SELECT * FROM `movies`";
+   	$result = $db->query($sql);
+	$num_rows = $result->num_rows;
+
+	if ($num_rows < 1) {
+		return ("no_data");
+    }
+    
     if (!isset($movieID)) {
         return("no_id");
     }
