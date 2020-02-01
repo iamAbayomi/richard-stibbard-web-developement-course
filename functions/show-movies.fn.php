@@ -2,8 +2,9 @@
 
 // Called in favourites.inc.php and movie-list.inc.php
 
+
 function showMovies($data) {
-    global $db, $userID, $movieID;
+    global $db, $userID, $movieID, $add_removeFragments;
     
     switch($data) {
         
@@ -81,7 +82,7 @@ function showMovies($data) {
                 $output .= "<h3>$title</h3>";
                 $output .= "<div class='actions'>";
                 $output .= "<div class='add_remove'>";
-                $output .= "<p>Add to/remove from favourites</p>";
+                $output .= "<p>$add_removeFragments</p>";
                 $output .= "</div>";
                 $output .= "</div>";
                 $output .= "<p class='description'>$description</p>";

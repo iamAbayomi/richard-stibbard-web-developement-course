@@ -3,7 +3,7 @@
 function testFav(){
     global $db, $userID, $movieID;
     
-    $stmt = $db-> prepare ("SELECT * FROM movies
+    $stmt = $db->prepare ("SELECT * FROM movies
             WHERE `movie_id` IN ( SELECT movie_id FROM
              `favourites` WHERE `movie_id` = ? AND `user_id` = ?)");
 

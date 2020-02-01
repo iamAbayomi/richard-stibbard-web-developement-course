@@ -3,6 +3,9 @@ $favsList = showMovies('favs');
 $nonfavsList = showMovies('non_favs');
 $testMovies = testMovies();
 
+
+$add_removeFragments = testFav();
+
 if ($favsList==""){
 	$favsTitle = "You have no favourites";
 	$trashClass = "hidden";
