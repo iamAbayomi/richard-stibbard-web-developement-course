@@ -11,6 +11,21 @@ if ($favsList==""){
 	$trashClass = "";
 }
 
+if ($nonfavsList=="") {
+	$welcome = "It looks like you love all the movies! ";
+	$welcome .= "Drag them to the trash can to delete them from your favourites.";
+	$openTag = "";
+	$closeTag = "";
+	$welcomeClass = "no_border_bottom";
+} else {
+	$welcome = "Here are some movies you might like. ";
+	$welcome .= "Click on the heart icon to add them to your favourites list.";
+	$openTag = "<ul>";
+	$closeTag = "</ul>";
+	$welcomeClass = "";
+}
+
+
 switch($testMovies) {
     
     case "invalid_id":
@@ -50,11 +65,10 @@ switch($testMovies) {
 	case "no_id":
 		echo "<section class='movie_list'>";
 		echo $greeting;
-		echo "<p class='welcome'>Here are some movies you might like.";
-		echo "Click on the heart icon to add them to your favourites list.</p>";
-		echo "<ul>";
+		echo "<p class='welcome $welcomeClass'>$welcome";
+		echo $openTag;
 		echo $nonfavsList;
-		echo "</ul>";
+		echo $closeTag;
 		echo "</section>";
 		break;
 	
