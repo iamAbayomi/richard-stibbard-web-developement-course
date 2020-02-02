@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+    $(document).on( 'mouseover mouseout' , '.non_favs li' , function(){
+
+    });
+
     $requestRunning = false;
     $(document).on('click', '.non_favs .add', function() {
         if ($requestRunning) {
